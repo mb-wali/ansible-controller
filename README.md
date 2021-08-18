@@ -1,5 +1,8 @@
 # ansible-controller
-Centos7 with Ansible &amp; python2.7
+Centos7 image with:
+* Ansible
+* python2.7
+* Docker
 
 The following system packages is installed on control machine.
 
