@@ -3,6 +3,7 @@ Centos7 image with:
 * Ansible
 * python2.7
 * Docker
+* docker-compose
 
 The following system packages is installed on control machine.
 

@@ -27,6 +27,7 @@ RUN yum makecache fast \
       python-netaddr \
       python-dns \
       dmidecode rpm-build jq \
+      docker-compose \
  && yum clean all
 
 # Upgrade Pip so cryptography package works.
