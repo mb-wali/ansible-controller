@@ -38,7 +38,7 @@ docker run --privileged --name ansible-controller -it -d mbwali/ansible-controll
 ## Access container & Enable Docker
 
 ```bash
-docker exec -it <containerid> bash 
+docker exec -it ansible-controller bash 
 systemctl start docker
 systemctl enable docker
 systemctl status docker
