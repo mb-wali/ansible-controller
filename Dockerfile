@@ -1,7 +1,3 @@
-# used to copy ssh folder from vms
-# to be able to access the vms passwordless
-FROM mbwali/centos7-vms:latest AS builder
-
 FROM centos:7
 
 # Install systemd -- See https://hub.docker.com/_/centos/
@@ -52,8 +48,12 @@ RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 RUN yum install -y epel-release -y
 RUN yum install -y ansible
 
-# copy .ssh folder from vms
-COPY --from=builder /root/.ssh/* /root/.ssh/
+# Generate keys
+# this would b automaticly added to all the containers
+# in order to access the VMS via ssh, we need to create & add the public sshkeys to other VMS.
+RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 VOLUME ["/sys/fs/cgroup"]
 ENTRYPOINT ["/usr/sbin/init"]
